@@ -435,6 +435,7 @@ class MainInterface:
             interface.launch(
                 favicon_path=os.path.join(os.path.dirname(__file__), 'assets/nvidia_logo.png'),
                 show_api=False,
+                server_name="0.0.0.0",
                 server_port=port,
                 allowed_paths=['Temp/Temp_Images/.', 'Temp/.']
             )
