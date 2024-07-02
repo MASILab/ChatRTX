@@ -23,6 +23,7 @@ import sys
 import time
 import calendar
 import json
+import argparse
 from model_setup_manager import download_model_by_name, build_engine_by_name
 import logging
 import gc
@@ -52,6 +53,7 @@ from utils import (read_model_name)
 import win32api
 import win32security
 
+# Variables and initialization
 selected_CLIP = False
 clip_engine = None
 selected_ChatGLM = False
@@ -91,6 +93,13 @@ def read_config(file_name):
         print(f"An unexpected error occurred: {e}")
     return None
 
+# Define command line arguments
+parser = argparse.ArgumentParser(description="Gradio App")
+parser.add_argument('--port', type=int, default=8000, help="Port number")
+args = parser.parse_args()
+
+# Use parsed arguments
+port = args.port if args.port else app_config_file.get("port", 8000)
 
 def get_model_config(config, model_name=None):
         selected_model = next((model for model in config["models"]["supported"] if model["name"] == model_name),
@@ -703,4 +712,4 @@ interface.on_model_delete(model_delete_handler)
 
 interface.on_regenerate_index(handle_regenerate_index)
 # render the interface
-interface.render()
+interface.render(port=port)

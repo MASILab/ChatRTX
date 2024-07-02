@@ -7,5 +7,6 @@
     "use_py_session": true,
     "trtLlm_debug_mode":false,
     "add_special_tokens":false,
-    "verbose": false
+    "verbose": false,
+    "port": 8000
 }

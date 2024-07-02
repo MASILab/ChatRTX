@@ -336,7 +336,7 @@ class MainInterface:
     def get_css(self):
         return kaizen.css() + open(os.path.join(os.path.dirname(__file__), 'www/app.css')).read()
 
-    def render(self):
+    def render(self, port=None):
         with gr.Blocks(
             title="ChatRTX",
             analytics_enabled=False,
@@ -420,8 +420,12 @@ class MainInterface:
             self._handle_events()
             self._handle_links()
         interface.queue()
-        port = self._get_free_port()
+
+        if port is None:
+            port = self._get_free_port()
+
         self._open_app(port)
+        
         if (self._https_enabled):
             interface.launch(
                 favicon_path=os.path.join(os.path.dirname(__file__), 'assets/nvidia_logo.png'),
