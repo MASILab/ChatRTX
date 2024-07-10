@@ -1,4 +1,7 @@
 __pycache__/
 config/preferences.json
 .vscode/
-.model/
+model/
+Temp/
+model.cache
+dataset_clip_vector_embedding/
